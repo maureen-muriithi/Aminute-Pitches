@@ -1,7 +1,3 @@
-from ast import Import
-import os
-
-
 import os
 
 
@@ -9,8 +5,7 @@ class Config:
     '''
     General configuration parent class
     '''
-    pass
-
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moh:mjwm2222@localhost/pitches_app'
 
 
 class ProdConfig(Config):
