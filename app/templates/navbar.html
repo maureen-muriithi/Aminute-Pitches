@@ -1,14 +1,29 @@
-<nav class="navbar  fixed-top navbar-expand-sm navbar-dark " style="background-color: #32de84;">
-    <div class="container-fluid">
-        <a class="navbar-brand " style="font-size: 2rem; margin-left: 5%; color: white;" href="/">AMINUTE PITCHES</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav " style="margin-left: 60%;">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-            <a class="nav-link" href="index/login">Login</a>
-          </div>
-        </div>
-    </div>
-</nav>
+<div class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid" style="background-color: #32de81; height: 60px"  >
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" style="color:white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:40px" href="/"> AMINUTE PITCHES </a>
+      </div>
+      <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
+              <li style="color:white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 20px;" ><a href="/">Home</a></li>
+              <ul class="nav navbar-nav navbar-right">
+                  {% if current_user.is_authenticated %}
+                      <li style="color:white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;padding:15px; font-size: 20px; ">{{current_user.username}}</li>
+                      <li style="color:white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 20px;" ><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+                      <li style="color:white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 20px;" ><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+                  {% else %}
+                      <li style="color:white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 20px; " ><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                  {%endif%}
+              </ul>
+
+      </div>
+
+  </div>
+</div>
+
