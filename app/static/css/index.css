@@ -1,7 +1,7 @@
 body{
     margin:0;
     padding:0;
-    background-color: blue;
+    background-color: #1b1b1b;
     color: white;
     }
 
@@ -13,16 +13,18 @@ body{
 }
 
 .login-text{
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Special Elite';
 }
 
 #login{
 font-weight:bold;
+font-family: 'Special Elite';
+
 }
 
 #logo{
-font-family: 'Special Elite', cursive;
-font-size:20px;
+font-family: 'Special Elite';
+font-weight: 700;
 }
 
 #option-signup{
@@ -69,10 +71,10 @@ margin-top:20px;
 }
 
 .site-header {
-    background-color: blue
+    background-color: #1b1b1b
 }
 .site-header a {
-    color: #999;
+    color: #32de82;
     transition: ease-in-out color .15s;
 }
 .site-header a:hover {
@@ -81,7 +83,7 @@ margin-top:20px;
 }
 
 .bgimage{
-background-color: blue;
+background-color: #1b1b1b;
 /* background-size:cover;
 background-position:center;
 background-repeat:no-repeat;

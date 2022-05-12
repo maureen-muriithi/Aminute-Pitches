@@ -1,16 +1,19 @@
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 {% macro view_comments(comments) %}
 <div class="container">
 </div>
 <div class="card-columns">
     {% for comment in comments %}
-    <div class="card">
+    <div class="card" style="background-color:#32de82">
         <div class="card-header">
+            <p class="text-center" style="color: black;">{{comment.pitch.category| upper }}</p>
         </div>
         <div class="card-body">
-            <p>{{comment.comment}}</p>
+            <p style="color: black;">{{comment.comment}}</p>
         </div>
-         <p class="text-center">{{comment.pitch.title}}</p>
+         <p class="text-center" style="color: black;">{{comment.pitch.title}}</p>
     </div>
     {% endfor %}
 </div>

@@ -9,7 +9,7 @@
     <div class="jumbotron" style="background-color: #32de82;">
         <div class="overlay">
             <h1 class="text-center" style=" color: black; font-size: 50px;">Pitches</h1>
-            <a href="/new_post"><button class="btn" style= "margin-left:47%; background-color: black; color: #32de82;">New Pitch</button></a>
+            <a href="/new_pitch"><button class="btn" style= "margin-left:47%; background-color: black; color: #32de82;">New Pitch</button></a>
         </div>
     </div>
     <div class="card-columns">
@@ -17,8 +17,9 @@
         {% for pitch in pitches %}
         <div class="card">
             <div class="card-body">
+                <p style="font-weight: bolder;"><br> Category: {{pitch.category}}</p>
+                <br>
                 <p>{{pitch.post}}</p>
-                <p><br> Category: {{pitch.category}}</p>
             </div>
             <div class="card-footer foot_flex d-block mx-auto">
                 <a href="/comment/{{pitch.id}}"><button class="btn btn-info">Comment</button></a>

@@ -12,9 +12,9 @@ def index():
     title = "Welcome to Aminute Pitches"
     pitches = Pitch.query.all()
     business = Pitch.query.filter_by(category = 'Business').all() 
-    meet_greet = Pitch.query.filter_by(category = 'Meet_greet').all()
+    personal = Pitch.query.filter_by(category = 'Personal').all()
     interviews = Pitch.query.filter_by(category = 'Interviews').all()
-    return render_template('index.html', title=title, business=business, meet_greet=meet_greet, interviews=interviews, pitches=pitches)
+    return render_template('index.html', title=title, business=business, personal=personal, interviews=interviews, pitches=pitches)
 
 @main.route('/pitches')
 @login_required
