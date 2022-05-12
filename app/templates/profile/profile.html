@@ -1,15 +1,16 @@
 {%extends 'base.html'%}
 {% block styles %}
 {{super()}}
-<link rel="stylesheet" href="{{url_for('static',filename='css/particle.css')}}">
-<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 {%block content%}
 
-<div class="col-md-4">
+<div class="row">
+
+  <div class="col-md-4">
     {% if user.profile_pic_path %}
 
-    <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+    <img style="margin-top: 30px;" src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
 
     {%else%}
     <p>No profile picture</p>
@@ -17,10 +18,11 @@
     {% endif %}
 
         {% if user == current_user %}
-    <form  action="{{url_for('main.update_pic',name=user.username)}}" method="post" enctype = "multipart/form-data">
-
+      <form  action="{{url_for('main.update_pic',username=user.username)}}" method="post" enctype = "multipart/form-data">
+        <br><br><br>
       <input type="file"  name="photo" class="form-control" required>
-      <input type="submit">
+      <br>
+      <input class="justify-content-center" type="submit">
     </form>
       {% endif %}
   </div>
@@ -49,6 +51,53 @@
 </div>
 
    </div>
+
+
+<!-- </div>
+<div class="col-md-4">
+    {% if user.profile_pic_path %}
+
+    <img style="margin-top: 30px;" src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+
+    {%else%}
+    <p>No profile picture</p>
+
+    {% endif %}
+
+        {% if user == current_user %}
+      <form  action="{{url_for('main.update_pic',username=user.username)}}" method="post" enctype = "multipart/form-data">
+        <br><br><br>
+      <input type="file"  name="photo" class="form-control" required>
+      <br>
+      <input class="justify-content-center" type="submit">
+    </form>
+      {% endif %}
+  </div>
+
+   <div class="card">
+        <h1 class="text-center text-white"> Username: {{user.username}}</h1>
+        <h1 class="text-center text-white">Your Email: {{user.email}}</h1>
+
+    <div class="col-md-1"></div>
+    <div class="col-md-5" id="user">
+        {% if current_user %}
+        {% for i in posts%}
+        <div class="pitches">
+            <h5>Title: {{i.title}}</h5>
+            <h6>{{i.post}}</h6>
+            <p>{{i.comment.count()}} Comments</p>
+        </div>
+         
+        {%endfor%}
+        {%else%}
+        <h3>You have ) posts</h3>
+        {%endif%} -->
+
+   </div>
+</div>
+</div>
+
+   </div> -->
 
 
 {%endblock%}

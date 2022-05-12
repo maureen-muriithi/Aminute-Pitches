@@ -1,6 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from flask_login import login_required, current_user
+from flask_login import login_required
+from flask_login import current_user
 from ..models import User, Pitch, Comment, Upvote, Downvote
 from .forms import UpdateProfile,PitchForm,CommentForm
 from .. import db, photos
@@ -19,9 +20,9 @@ def index():
 @login_required
 def pitches():
     pitches = Pitch.query.all()
-    upvote = Upvote.query.all()
+    likes = Upvote.query.all()
     user = current_user
-    return render_template('view_pitches.html', pitches=pitches, upvote=upvote, user=user)
+    return render_template('view_pitches.html', pitches=pitches, likes=likes, user=user)
 
 @main.route('/new_pitch', methods=['GET', 'POST'])
 @login_required
@@ -32,8 +33,8 @@ def new_pitch():
         post = form.post.data
         category = form.category.data
         user_id = current_user._get_current_object().id
-        post_obj = Pitch(post=post, title=title, category=category, user_id=user_id)
-        post_obj.save()
+        new_pitch_obj = Pitch(post=post, title=title, category=category, user_id=user_id)
+        new_pitch_obj.save()
         return redirect(url_for('main.index'))
     return render_template('pitch.html', form=form)
 
@@ -77,43 +78,40 @@ def downvote(id):
     downvote.save()
     return redirect(url_for('main.pitches'))
 
-@main.route('/user/<username>')
+@main.route('/user')
 @login_required
-def profile(username):
+def profile():
     username = current_user.username
     user_id = current_user._get_current_object().id
     user = User.query.filter_by(username=username).first()
-    posts = Pitch.query.filter_by(user_id =user_id).all()
+    pitches = Pitch.query.filter_by(user_id =user_id).all()
     if user is None:
         return ('not found')
-    return render_template('profile/profile.html', user=user, posts=posts)
+    return render_template('profile/profile.html', user=user, pitches=pitches)
 
-
-
-
-@main.route('/user/<name>/update_profile', methods=['POST', 'GET'])
+@main.route('/user/<username>/update_profile', methods=['POST', 'GET'])
 @login_required
-def updateprofile(name):
+def updateprofile(username):
     form = UpdateProfile()
-    user = User.query.filter_by(username=name).first()
+    user = User.query.filter_by(username=username).first()
     if user is None:
         error = 'The user does not exist'
     if form.validate_on_submit():
         user.bio = form.bio.data
         user.save()
-        return redirect(url_for('.profile', name=name))
+        return redirect(url_for('.profile', username=username))
     return render_template('profile/update_profile.html', form=form)
 
-@main.route('/user/<name>/update/pic',methods= ['POST'])
+@main.route('/user/<username>/update/pic',methods= ['POST'])
 @login_required
-def update_pic(name):
-    user = User.query.filter_by(username = name).first()
+def update_pic(username):
+    user = User.query.filter_by(username = username).first()
     if 'photo' in request.files:
         filename = photos.save(request.files['photo'])
         path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
-    return redirect(url_for('main.profile',name=name))
+    return redirect(url_for('main.profile',username=username))
 
 
 
