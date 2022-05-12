@@ -6,9 +6,26 @@
 {% endblock %}
 {%block content%}
 
-   <div class="card">
-       <img src="https://avatars2.githubusercontent.com/u/32802350?s=460&v=4" alt="profile_pic" class="rounded-image">
+<div class="col-md-4">
+    {% if user.profile_pic_path %}
 
+    <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+
+    {%else%}
+    <p>No profile picture</p>
+
+    {% endif %}
+
+        {% if user == current_user %}
+    <form  action="{{url_for('main.update_pic',name=user.username)}}" method="post" enctype = "multipart/form-data">
+
+      <input type="file"  name="photo" class="form-control" required>
+      <input type="submit">
+    </form>
+      {% endif %}
+  </div>
+
+   <div class="card">
         <h1 class="text-center text-white"> Username: {{user.username}}</h1>
         <h1 class="text-center text-white">Your Email: {{user.email}}</h1>
 
