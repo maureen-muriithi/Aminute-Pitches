@@ -15,7 +15,7 @@
               <ul class="nav navbar-nav navbar-right">
                   {% if current_user.is_authenticated %}
                       <li style="color:white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;padding:15px; font-size: 20px; ">{{current_user.username}}</li>
-                      <li style="color:white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 20px;" ><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+                      <li style="color:white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 20px;" ><a href="{{url_for('main.profile',username=current_user.username)}}">Profile</a></li>
                       <li style="color:white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 20px;" ><a href="{{url_for('auth.logout')}}">Sign out</a></li>
                   {% else %}
                       <li style="color:white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 20px; " ><a href="{{url_for('auth.login')}}">Sign in</a></li>

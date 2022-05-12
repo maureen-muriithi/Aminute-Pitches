@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static',filename='css/particle.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+{% endblock %}
+{%block content%}
+
+   <div class="card">
+       <img src="https://avatars2.githubusercontent.com/u/32802350?s=460&v=4" alt="profile_pic" class="rounded-image">
+
+        <h1 class="text-center text-white"> Username: {{user.username}}</h1>
+        <h1 class="text-center text-white">Your Email: {{user.email}}</h1>
+
+    <div class="col-md-1"></div>
+    <div class="col-md-5" id="user">
+        {% if current_user %}
+        {% for i in posts%}
+        <div class="pitches">
+            <h5>Title: {{i.title}}</h5>
+            <h6>{{i.post}}</h6>
+            <p>{{i.comment.count()}} Comments</p>
+        </div>
+         
+        {%endfor%}
+        {%else%}
+        <h3>You have ) posts</h3>
+        {%endif%}
+
+  </div>
+</div>
+</div>
+
+   </div>
+
+
+{%endblock%}
