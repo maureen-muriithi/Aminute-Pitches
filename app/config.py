@@ -1,4 +1,5 @@
 import os
+from re import T
 
 
 class Config:
@@ -26,7 +27,10 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    pass
+SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL").replace("://", "ql://", 1) 
+
+DEBUG=True
+
 
 class TestConfig(Config):
     '''
@@ -47,7 +51,7 @@ class DevConfig(Config):
     '''
 
 
-    DEBUG=True
+DEBUG=True
     
 
 config_options = {
