@@ -1,5 +1,4 @@
 import os
-from re import T
 
 
 class Config:
@@ -39,6 +38,7 @@ class TestConfig(Config):
         Config: The parent configuration class with General configuration settings
     '''
     # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moh:mjwm2222@localhost/pitches_app_test'
+    pass
 
 
 
@@ -57,6 +57,5 @@ DEBUG=True
 config_options = {
 'development':DevConfig,
 'production':ProdConfig,
-
 
 }
